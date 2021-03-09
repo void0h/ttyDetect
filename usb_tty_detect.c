@@ -185,7 +185,7 @@ usb_tty_detect_t *usb_tty_detect_init(int (*usb_attached_callback)(int vid, int 
 		printf("pthread_create failed!");
 		goto ERR3;
 	}
-
+	/*flag需要设置为LIBUSB_HOTPLUG_ENUMERATE才能检测到已插入的设备*/
 	ret = libusb_hotplug_register_callback(tty_handle->usb_context,
 										   LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED,
 										   LIBUSB_HOTPLUG_ENUMERATE,
